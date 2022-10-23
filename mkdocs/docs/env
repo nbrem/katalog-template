@@ -1,0 +1,45 @@
+# SITE INFORMATIONS ===========================================================================================================
+
+site_name: Katalog - Modèles de départ
+site_author: Konsilion Ingénieres
+site_description: Resneigner ici une courte description de votre plateforme.
+
+
+
+
+
+# LANGUE ET COULEURS ==========================================================================================================
+
+# Liste des couleurs : https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#primary-color
+
+theme:
+    language: fr
+    palette:
+        scheme: default          # NE PAS MODIFIER
+        primary: blue            # Couleurs pincipales
+        accent: blue             # Couleur de surbrillance
+
+
+
+
+
+
+
+# MENTIONS =====================================================================================================================
+
+copyright: Konsilion - Licence juridique Creative Commons CC-BY-NC 4.0  # Renseigner ce que vous voulez ici
+
+
+
+
+
+
+
+
+# RESEAUX SOCIAUX =====================================================================================================================
+
+extra:
+  generator: false
+  version:
+      provider: mike
+      javascript_dir: js
