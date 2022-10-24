@@ -60,13 +60,31 @@ hide:
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/Katalog.css">
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
     <!-- Personnal Konsilion JS -->
-    <script type="text/javascript" src="../kloud.js"></script>
+    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/kloud.js"></script>
 </head>
 
 
 
 <style>
-
+    
+.top-logo {
+    float:right;
+    margin: 15px 5px;
+    border: 1px solid #EEE;
+    border-radius:5px;
+    padding:10px;
+    cursor: pointer;
+    filter: opacity(60%)!important;
+    background-color:#FCFCFC;
+}
+  
+.top-logo:hover {
+    float:right;
+    border: 1px solid #EEE;
+    border-radius:5px;
+    padding:10px;    
+    filter: opacity(100%) !important;    
+}   
     
 .search-wrapper {
   display: flex;
@@ -79,7 +97,6 @@ input {
 }
 
 
-    
 #KloudsGrid {
   margin: 0px;
   display: grid;
@@ -92,7 +109,7 @@ input {
   border: 1px solid #CCC;
   background-color: #EEE;
   height: 225px;
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
 }
 
 
@@ -117,12 +134,13 @@ input {
     background-color: white;
     height: 70%;
     overflow: hidden;
-    border-radius: 10px 10px 0px 0px;
 }
   
 .img > img {
-    height: 100%;
-    padding:10px;
+    min-width: 200px;
+    max-width: 425px;
+    height:100%;
+    border: 1px solid #FFF;
 }
     
     
@@ -132,7 +150,6 @@ input {
   background-color: rgba(250,250,250,0.5);
   height: 225px;
   width: auto;
-  max-width: 330px;
   margin-left: 0px;  
   border-radius: 10px;
 }
@@ -147,7 +164,6 @@ input {
     text-align: center;
     height: 100%;
     overflow: hidden;
-    border-radius: 10px;
 }
     
 .add-img > img {

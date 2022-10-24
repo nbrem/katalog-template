@@ -99,8 +99,7 @@ function csvExtractionKatalog(content,name) {
 
 
 
-function KatalogSwitch(){
-    
+function KatalogSwitch(){ 
     HideClassSwitch('LoaderContainer');
     HideClassSwitch('Bibliotek');
     
@@ -113,8 +112,6 @@ function KatalogSwitch(){
 
 
 function BibliotekSwitch(){
-    
-    
     ele = document.getElementById('FiltersZone');
     w3RemoveClass(ele, "show");
     w3AddClass(ele, "hide")
@@ -123,6 +120,18 @@ function BibliotekSwitch(){
     
     HideClassSwitch('Katalog');
     HideClassSwitch('Bibliotek');
+};
+
+function OpenBibliotek(){ 
+    
+    HideClassSwitch('Bibliotek');    
+    HideClassSwitch('LoaderContainer');
+
+    setTimeout(function(){
+        HideClassSwitch('Bibliotek');
+        all_grid();
+        HideClassSwitch('LoaderContainer');
+    }, 1000);
 };
 
 
@@ -184,10 +193,10 @@ function htmlGridGenerator(content,location,name) {
     document.getElementById("CardGrid").innerHTML = "";
     
         
-    document.getElementById("CardGrid").innerHTML += `
-        <div onclick="AddResources('` + location + `','` + name + `');" style="cursor: pointer;" class="card container add-card">
-            <div class="add-img"><img style="filter: grayscale(20%) opacity(40%)" src="https://cdn-icons-png.flaticon.com/512/7235/7235503.png"></div>
-        </div>`;
+    //document.getElementById("CardGrid").innerHTML += `
+    //    <div onclick="AddResources('` + location + `','` + name + `');" style="cursor: pointer;" class="card container add-card">
+    //        <div class="add-img"><img style="filter: grayscale(20%) opacity(40%)" src="https://cdn-icons-png.flaticon.com/512/7235/7235503.png"></div>
+    //    </div>`;
     
     data.forEach(function(row, index) {
         const card = ressourceCardTemplate.content.cloneNode(true).children[0]
@@ -364,8 +373,8 @@ function htmlParamGenerator(content,location,name) {
     
     let katalog_title = document.getElementById('KatalogTitle'); 
     
-    html = `<h2 style="color:#6D6D6D; font-size: 30px; margin:0px auto;">Katalog - <b>` + data[0][3] + `</b>&emsp; 
-                <img style="float:right;margin:10px" width="80px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/3616/3616558.png" alt="Bibliotek logo">
+    html = `<h2 style="color:#6D6D6D; font-size: 30px; margin:0px auto;">` + data[0][3] + `&emsp; 
+                <img onclick="AddResources('` + location + `','` + name + `');" width="125px" class="top-logo fit-picture" src="../../images/Add_Ressources.png" alt="Bibliotek logo">
                 <button id="ReturnKatalog" class="btn neumorphic-btn" onclick="BibliotekSwitch();">
                     <i class="fa-solid fa-person-walking-arrow-loop-left"></i>
                 </button>
@@ -381,7 +390,7 @@ function htmlParamGenerator(content,location,name) {
     
     let GetElem = document.getElementById('AddStep1');
     
-    html = `<a href="#" onclick="HideClassSwitch('PopupAdd');HideClassSwitch('Katalog');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
+    html = `<a style="cursor: pointer;" onclick="HideClassSwitch('PopupAdd');HideClassSwitch('Katalog');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
                 <hr>
                 <h2>Décrivez-nous votre <b>ressource</b> :</h2>
                 <hr>
@@ -409,15 +418,17 @@ function htmlParamGenerator(content,location,name) {
     
     GetElem = document.getElementById('AddStep2');
     
+    console.log(location)
+    
     html = `<hr>
-                <p>Vous pouvez nous transmettre le code d'ajout par le biais de notre <b>formulaire contact</b>.</p>
-                <a href="" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-solid fa-plus"></i> Ajouter votre ressource</button>
+                <p>Si vous possèdez un <b>compte GitHub</b>, vous pouvez ajouter directement votre ressource.</p>
+                <a href="` + location + "katalogs/ressources.csv" + `" target="_blank">
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement en 2 clics</button>
                 </a>
                 <hr>
-                <p>Si vous possèdez un <b>compte GitHub</b>, vous pouvez ajouter directement votre ressource.</p>
-                <a href="" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Ajouter votre ressource</button>
+                <p>Vous pouvez nous transmettre le code d'ajout par le biais de notre <b>formulaire contact</b>.</p>
+                <a href="` + data[0][4] + `" target="_blank">
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-solid fa-plus"></i> Par une prise de contact</button>
                 </a>`;
     
     GetElem.innerHTML = html;
