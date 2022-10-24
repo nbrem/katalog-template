@@ -147,10 +147,10 @@ hide:
     
 .top-logo {
     float:right;
-    margin: 15px 5px;
+    margin: 25px 0px 25px 15px;
+    padding: 7px;
     border: 1px solid #EEE;
     border-radius:5px;
-    padding:10px;
     cursor: pointer;
     filter: opacity(60%)!important;
     background-color:#FCFCFC;
@@ -159,8 +159,7 @@ hide:
 .top-logo:hover {
     float:right;
     border: 1px solid #EEE;
-    border-radius:5px;
-    padding:10px;    
+    border-radius:5px;   
     filter: opacity(100%) !important;    
 }   
     
