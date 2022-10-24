@@ -9,8 +9,7 @@ hide:
 <div id="Bibliotek" class="div-cleanbody">
     <div id="BiblioteksTitle" class="biblioteks-tilte" biblioteks-tilte></div>
     <input type="search" class="search-input" placeholder="Rechercher ..." title="Rechercher" bibliotek-search>
-    <button id="BtnAdd" class="btn neumorphic-btn" onclick="AddBibliotek('` + data[1][2] + `','` + data[1][3] + `');"><i class="fa-solid fa-plus"></i></button>
-    <hr>
+    <br><br><br>
     <div id="BiblioteksGrid" class="biblioteks-grid" biblioteks-grid-container></div>
 </div>
 
@@ -42,7 +41,7 @@ hide:
 
 <div class="popup hide" id="PopupAdd">
     <div id="AddStep1"></div>
-    <div class="hide" id="AddStep2"></div>
+    <div id="AddStep2"></div>
 </div>
 
 
@@ -89,7 +88,7 @@ hide:
         <h2 class="bibliotek-name" bibliotek-name></h2>
         <p class="bibliotek-descr" bibliotek-descr></p>
         <div class="bibliotek-katalogs" bibliotek-katalogs></div>
-    <hr style="margin-top:125px;">
+        <p class="bibliotek-link" bibliotek-link></p>
     </div>
 </template>
 
@@ -129,7 +128,7 @@ hide:
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/Katalog.css">
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
     <!-- Personnal Konsilion JS -->
-    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/katalog.js"></script>
+    <script type="text/javascript" src="../katalog.js"></script>
     <script type="text/javascript" src="../home.js"></script>
 </head>
 
@@ -202,8 +201,11 @@ input {
 }
   
 .img > img {
-    height: 100%;
-    padding:10px;
+    min-width: 200px;
+    max-width: 425px;
+    height:100%;
+    border: 1px solid #CCC;
+    border-radius: 9px 9px 0px 0px;
 }
     
     
