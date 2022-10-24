@@ -33,29 +33,32 @@ searchInput.addEventListener("input", e => {
 
 
 // Transformations CSV vers HTML
-function KatalogConstruction(location,name) {
+function KatalogConstruction(url_web,name,url_remote) {
     
-    // ---> location : origine de la bibliotek   |   name : ID katalog
+    // ---> url_web : origine github.io de la bibliotek
+    // ---> url_remote : origine github.com de la bibliotek 
 
     // -----> Données de votre liste de projet - Gridcard
-    Papa.parse(location + "katalogs/ressources.csv", { 
+    Papa.parse(url_web + "katalogs/ressources.csv", { 
         download: true,
         delimiter: ";",
         skipEmptyLines: true,
         complete: results => {
-            htmlGridGenerator(csvExtractionKatalog(results.data,name),location,name);
+            htmlGridGenerator(csvExtractionKatalog(results.data,name),url_web,name);
         }
     });
     
 
     // -----> Données de votre liste de projet - Gridcard
 
-    Papa.parse(location + "katalogs/katalogs.csv", { 
+    console.log("NOM : " + name)
+    
+    Papa.parse(url_web + "katalogs/katalogs.csv", { 
         download: true,
         delimiter: ";",
         skipEmptyLines: true,
         complete: results => {
-            htmlParamGenerator(csvExtractionKatalog(results.data,name),location,name);
+            htmlParamGenerator(csvExtractionKatalog(results.data,name),url_web,name,url_remote);
         }
     });
     
@@ -304,9 +307,10 @@ function htmlTableGenerator(content) {
 
 
 // -----> Créée l'encadré des paramètres avancés
-function htmlParamGenerator(content,location,name) {
+function htmlParamGenerator(content,location,name,url_remote) {
 
     const data = content.slice(0);
+    
     
     // -----> Filtres principaux
     Papa.parse(location + "katalogs/filters1.csv", { 
@@ -375,7 +379,7 @@ function htmlParamGenerator(content,location,name) {
     
     html = `<h2 style="color:#6D6D6D; font-size: 30px; margin:0px auto;">` + data[0][3] + `&emsp; 
                 <a href='../../biblioteks/home'><img style="" width="50px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>
-                <img onclick="AddResources('` + location + `','` + name + `');" width="75px" class="top-logo fit-picture" src="../../images/Add_Ressources.png" alt="Bibliotek logo">
+                <img onclick="AddResources('` + url_remote + `','` + name + `');" width="75px" class="top-logo fit-picture" src="../../images/Add_Ressources.png" alt="Bibliotek logo">
                 <button id="ReturnKatalog" class="btn neumorphic-btn" onclick="BibliotekSwitch();">
                     <i class="fa-solid fa-person-walking-arrow-loop-left"></i>
                 </button>
