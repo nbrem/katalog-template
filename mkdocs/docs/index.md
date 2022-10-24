@@ -8,5 +8,5 @@ hide:
 
 
 <head>
-    <meta http-equiv="refresh" content="0; url=../biblioteks/home" />
+    <meta http-equiv="refresh" content="0; url=./biblioteks/home" />
 </head>
