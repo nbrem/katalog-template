@@ -343,8 +343,8 @@ function htmlBiblioteksTableGenerator(content) {
         data.forEach(function(row) {
             html += '<tr>';
             row.forEach(function(colData, index) {            
-                if(save_columns.includes(index)) {
-                    html += '<td class="ellipsis">' + colData + '</td>';
+                if(colData.startsWith('../')) {
+                    html += '<td class="ellipsis">' + colData.replace("../", window.location.pathname) + '</td>';
                 }
             });
             html += '</tr>';
