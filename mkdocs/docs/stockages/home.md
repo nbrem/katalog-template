@@ -60,7 +60,7 @@ hide:
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/Katalog.css">
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
     <!-- Personnal Konsilion JS -->
-    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/kloud.js"></script>
+    <script type="text/javascript" src="../kloud.js"></script>
 </head>
 
 
@@ -83,7 +83,8 @@ hide:
     border: 1px solid #EEE;
     border-radius:5px;   
     filter: opacity(100%) !important;    
-}  
+}
+    
     
 .search-wrapper {
   display: flex;
@@ -100,7 +101,7 @@ input {
   margin: 0px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(225px, auto));
-  gap: 30px;
+  gap: 45px;
   justify-content: left;     
 }
 
@@ -108,7 +109,7 @@ input {
   border: 1px solid #CCC;
   background-color: #EEE;
   height: 225px;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px;
 }
 
 
@@ -150,7 +151,7 @@ input {
   height: 225px;
   width: auto;
   margin-left: 0px;  
-  border-radius: 10px;
+  border-radius: 0px;
 }
     
 .add-card:hover {

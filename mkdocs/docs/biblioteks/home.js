@@ -1,6 +1,7 @@
 let biblioteks = [];
 const bibliotekCardTemplate = document.querySelector("[bibliotek-card-template]")
 const bibliotekCardContainer = document.querySelector("[biblioteks-grid-container]")
+let url_remote = [];
 
 OpenBibliotek();
     
@@ -49,11 +50,7 @@ window.onload = function() {
         complete: results => {
             htmlBibliotekGenerator(results.data);
         }
-    });    
-    
-    
-    
-    
+    });      
 }
 
 
@@ -69,12 +66,14 @@ function htmlHomeGenerator(content) {
     let html = `<br>
                 <h1 style="display: block;">
                     ` + data[1][0] + `
-                    <a href='../../stockages/home'><img width="75px" class="top-logo fit-picture" src="../../images/Go_Kloud.png" alt="Bibliotek logo"></a>
+                    <a href='` + data[1][2] + `home.csv' target='_blank'><img width="50px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png"></a>
                     <img onclick="AddBibliotek('` + data[1][2] + `','` + data[1][3] + `');" style="" width="75px" class="top-logo fit-picture" src="../../images/Add_Bibliotek.png" alt="Bibliotek logo">
                 </h1>
                 <p style="color:#AAA; font-size: 18px; font-weight: 350;">` + data[1][1] + `</p>`;
     
-    GetElem.innerHTML += html;        
+    GetElem.innerHTML += html; 
+    
+    url_remote[0] = data[1][2];
 }
 
 
@@ -122,6 +121,8 @@ function htmlBibliotekGenerator(content) {
 
 function htmlInfoBibliotekGenerator(info,index,path) {
 
+        let modify_path = '';
+    
         const data = info.slice(2);
     
         const card = bibliotekCardTemplate.content.cloneNode(true).children[0]
@@ -130,7 +131,13 @@ function htmlInfoBibliotekGenerator(info,index,path) {
         const link = card.querySelector("[bibliotek-link]")
         
         
-        name.innerHTML = '<hr><img style="filter: opacity(80%); float:left; margin: 0px 25px 25px 0px;" width="30px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/2206/2206433.png" alt="Bibliotek logo">' + data[0][0] + '';
+        if (path.startsWith('../')) {
+            modify_path = url_remote + path.slice(-3) + 'bibliotek-info.csv'
+        } else {
+            modify_path = path 
+        }
+        
+        name.innerHTML = '<hr><a href="' + modify_path + '" target="_blank"><img style="filter: opacity(90%); margin: 0px 25px 0px 0px;" width="40px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>' + data[0][0];
         
         descr.innerHTML = '<p style="color:#AAA; font-size: 17px; font-weight: 350;">' + data[0][1] + '</p>'
     
@@ -158,8 +165,6 @@ function htmlInfoBibliotekGenerator(info,index,path) {
                 htmlKatalogGenerator(results.data,data[0][2],data[0][3],path,index);
             }
         });    
-    
- 
 }
 
 
@@ -181,6 +186,11 @@ function htmlInfoBibliotekGenerator(info,index,path) {
 
 function htmlKatalogGenerator(content,add,contact,url,num_blibliotek) {
     
+    
+    if (url.startsWith('../')) {
+        url = url_remote + url.slice(-3)
+    }
+    
     const card = bibliotekCardContainer.children[num_blibliotek]
 
     const grid = card.querySelector("[bibliotek-katalogs]")
@@ -200,6 +210,7 @@ function htmlKatalogGenerator(content,add,contact,url,num_blibliotek) {
                             <p data-descr>` + data[index][5] + `</p>
                         </div>
                     </a>
+                    <a href='` + url + `katalogs/katalogs.csv' target="_blank"><img width="30px" style="float:left; margin: 15px 0px 0px 0px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>
                 </div>`;   
     });
         
@@ -209,6 +220,7 @@ function htmlKatalogGenerator(content,add,contact,url,num_blibliotek) {
             </div>`;     
 
     grid.innerHTML = html;
+    
     
 }
 
@@ -272,7 +284,7 @@ function AddBibliotek(add_link, contact_link) {
                             <img style="filter: opacity(60%)" src="https://cdn-icons-png.flaticon.com/512/7084/7084011.png">
                         </div>
                     </div>
-                    <a href="` + add_link + `" target="_blank" class="add-card container">
+                    <a href="` + add_link + `biblioteks-list.csv" target="_blank" class="add-card container">
                         <div class="add-img">
                             <img style="filter: opacity(60%)" src="https://cdn-icons-png.flaticon.com/512/8364/8364955.png">
                         </div>
@@ -318,7 +330,7 @@ function TestAddBibliotek() {
     
     let html = "";
     
-    html += '<div style="vertical-align: middle;"><h2 id="' + data[0].value + '"><img style="filter: grayscale(100%);" width="25px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/6817/6817478.png">&ensp;' + data[0].value + '';
+    html += '<div style="vertical-align: middle;"><h2 id="' + data[0].value + '"><img style="filter: grayscale(100%);" width="25px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/6817/6817478.png">&ensp;' + data[0].value;
 
     html += '<p style="color:#AAA; font-size: 18px; font-weight: 350;"><br>' + data[1].value + '</p><br></div>';
     
@@ -460,7 +472,7 @@ function AddKatalog(add_link, contact_link, url) {
 function PrintKatalogsPopup(location) {
 
     // -----> Liste des katalogs
-    Papa.parse(location + "/katalogs/katalogs.csv", { 
+    Papa.parse(location + "katalogs/katalogs.csv", { 
         download: true,
         delimiter: ";",
         skipEmptyLines: true,
@@ -594,7 +606,7 @@ function findLastBibliotekResult(content,contact,add) {
         
         
         html += `<div style="text-align:center;">
-                <a href="` + add + `" target="_blank">
+                <a href="` + add + `biblioteks-list.csv" target="_blank">
                     <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement</button>
                 </a>
                 <a href="` + contact + `" target="_blank">
