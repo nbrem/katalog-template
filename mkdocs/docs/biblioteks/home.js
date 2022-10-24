@@ -2,6 +2,7 @@ let biblioteks = [];
 const bibliotekCardTemplate = document.querySelector("[bibliotek-card-template]")
 const bibliotekCardContainer = document.querySelector("[biblioteks-grid-container]")
 let url_remote = [];
+let url_web = [];
 
 OpenBibliotek();
     
@@ -74,6 +75,8 @@ function htmlHomeGenerator(content) {
     GetElem.innerHTML += html; 
     
     url_remote[0] = data[1][2];
+    
+    url_web[0] = data[1][4];
 }
 
 
@@ -87,6 +90,8 @@ function htmlHomeGenerator(content) {
 // -----> Créée les gridcards depuis le fichier data.csv
 function htmlBibliotekGenerator(content) {   
 
+    // content: bibliotek-list.csv
+    
     
     let html = '';
     
@@ -134,8 +139,9 @@ function htmlInfoBibliotekGenerator(info,index,path) {
         if (path.startsWith('../')) {
             modify_path = url_remote + path.slice(-3) + 'bibliotek-info.csv'
         } else {
-            modify_path = path 
+            modify_path = url_remote + 'bibliotek-info.csv'
         }
+
         
         name.innerHTML = '<hr><a href="' + modify_path + '" target="_blank"><img style="filter: opacity(90%); margin: 0px 25px 0px 0px;" width="40px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>' + data[0][0];
         
@@ -184,12 +190,19 @@ function htmlInfoBibliotekGenerator(info,index,path) {
 
         
 
-function htmlKatalogGenerator(content,add,contact,url,num_blibliotek) {
+function htmlKatalogGenerator(content,add,contact,path,num_blibliotek) {
     
+
+    let modify_url = '';
+
+        if (path.startsWith('../')) {
+            modify_url = url_remote + path.slice(-3) + 'bibliotek-info.csv'
+        } else {
+            modify_url = url_remote + path.slice(-3) + 'bibliotek-info.csv'
+        }
     
-    if (url.startsWith('../')) {
-        url = url_remote + url.slice(-3)
-    }
+
+    let consult_url = url_web + path.slice(-3)
     
     const card = bibliotekCardContainer.children[num_blibliotek]
 
@@ -201,22 +214,24 @@ function htmlKatalogGenerator(content,add,contact,url,num_blibliotek) {
     let html = '';
     
     data.forEach(function(row, index) {
+
+        console.log(data[index][0])
         
         html += `<div style="cursor: pointer;" class="card container">
-                    <a onclick="KatalogConstruction('` + url + `','` + data[index][0] + `');" target="_blank" data-link>
+                    <a onclick="KatalogConstruction('` + consult_url + `','` + data[index][0] + `','` + modify_url + `');" target="_blank" data-link>
                         <div class="img" style="background-size: cover; background-image: url('` + data[index][6] + `');"><img src="` + data[index][6] + `" data-img></div>
                         <div class="header" data-header>` + data[index][3] + `</div>
                         <div class="overlay">
                             <p data-descr>` + data[index][5] + `</p>
                         </div>
                     </a>
-                    <a href='` + url + `katalogs/katalogs.csv' target="_blank"><img width="30px" style="float:left; margin: 15px 0px 0px 0px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>
+                    <a href='` + modify_url + `katalogs/katalogs.csv' target="_blank"><img width="30px" style="float:left; margin: 15px 0px 0px 0px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>
                 </div>`;   
     });
         
     
     html += `<div style="cursor: pointer;" class="card container add-card">
-                <div onclick="AddKatalog('` + add + `','` + contact + `','` + url + `');" class="add-img"><img style="filter: grayscale(15%) opacity(20%)" src="https://cdn-icons-png.flaticon.com/512/4732/4732392.png"></div>
+                <div onclick="AddKatalog('` + add + `','` + contact + `','` + path + `');" class="add-img"><img style="filter: grayscale(15%) opacity(20%)" src="https://cdn-icons-png.flaticon.com/512/4732/4732392.png"></div>
             </div>`;     
 
     grid.innerHTML = html;

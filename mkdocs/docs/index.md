@@ -8,21 +8,34 @@ hide:
     <br>
     <h1>Bienvenue sur votre <b>plateforme Katalog</b></h1>
     <hr>
-    <p style="color:#AAA; font-size: 18px; font-weight: 350;">Accèdez à vos <u>bibliothèques de ressources</u> et à vos <u>espaces de stockages</u></p>
+    <p style="color:#AAA; font-size: 18px; font-weight: 350;">Accèdez à vos bibliothèques de ressources et à vos espaces de stockages.</p>
     <br>
-    <div class="add-choice" style="justify-content: center;">
+    <div class="add-choice" style="justify-content: left;">
         <a href="./biblioteks/home" class="add-card container">
             <div class="add-img">
-                <img style="filter: opacity(60%)" src="https://cdn-icons-png.flaticon.com/512/2206/2206433.png">
+                <img style="filter: opacity(60%)" src="./images/katalog_global.png">
             </div>
         </a>
         <a href="./stockages/home" class="add-card container">
             <div class="add-img">
-                <img style="filter: opacity(60%)" src="https://cdn-icons-png.flaticon.com/512/3176/3176377.png">
+                <img style="filter: opacity(50%)" src="https://cdn-icons-png.flaticon.com/512/3176/3176377.png">
             </div>
-        </a>
+        </a>  
+        <br>
+        </div><hr style="width:75%;">
     </div>
-</div>
+<div style="text-align: center;"><h2 style="color:#AAA">Katalog, <b>Kesako ?</b></h2><br><br><img id="KatalogKesako" src="./images/katalogs_kesako.png"></div>
+
+    
+
+
+
+
+
+
+
+
+
 
 <head>
     <meta charset="utf-8">
@@ -55,7 +68,15 @@ hide:
 
 
 <style>
-   
+
+#KatalogKesako {
+    width: 95%;
+    max-width: 450px;
+    margin:0px;
+    padding:0px;
+}
+    
+    
 .bibliotek-card {
     margin-bottom: 25px;
 }
