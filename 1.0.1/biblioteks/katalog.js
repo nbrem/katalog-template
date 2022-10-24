@@ -374,7 +374,8 @@ function htmlParamGenerator(content,location,name) {
     let katalog_title = document.getElementById('KatalogTitle'); 
     
     html = `<h2 style="color:#6D6D6D; font-size: 30px; margin:0px auto;">` + data[0][3] + `&emsp; 
-                <img onclick="AddResources('` + location + `','` + name + `');" width="125px" class="top-logo fit-picture" src="../../images/Add_Ressources.png" alt="Bibliotek logo">
+                <a href='../../biblioteks/home'><img style="" width="50px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>
+                <img onclick="AddResources('` + location + `','` + name + `');" width="75px" class="top-logo fit-picture" src="../../images/Add_Ressources.png" alt="Bibliotek logo">
                 <button id="ReturnKatalog" class="btn neumorphic-btn" onclick="BibliotekSwitch();">
                     <i class="fa-solid fa-person-walking-arrow-loop-left"></i>
                 </button>
