@@ -2,7 +2,8 @@ let biblioteks = [];
 const bibliotekCardTemplate = document.querySelector("[bibliotek-card-template]")
 const bibliotekCardContainer = document.querySelector("[biblioteks-grid-container]")
 
-
+OpenBibliotek();
+    
 
 const searchBibliotek = document.querySelector("[bibliotek-search]")
 
@@ -25,6 +26,7 @@ searchBibliotek.addEventListener("input", e => {
 
 // Transformations CSV vers HTML
 window.onload = function() {
+
 
     // -----> Données de votre liste de projet - Gridcard
     Papa.parse(window.location.pathname + "../home.csv", { 
@@ -67,10 +69,10 @@ function htmlHomeGenerator(content) {
     let html = `<br>
                 <h1 style="display: block;">
                     ` + data[1][0] + `
-                    &ensp;&ensp;<img style="float:right;margin: 15px 25px;" width="95px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/2206/2206433.png" alt="Bibliotek logo">
+                    <a href='../../stockages/home'><img width="75px" class="top-logo fit-picture" src="../../images/Go_Kloud.png" alt="Bibliotek logo"></a>
+                    <img onclick="AddBibliotek('` + data[1][2] + `','` + data[1][3] + `');" style="" width="75px" class="top-logo fit-picture" src="../../images/Add_Bibliotek.png" alt="Bibliotek logo">
                 </h1>
-                <p style="color:#AAA; font-size: 18px; font-weight: 350;">` + data[1][1] + `</p>
-                <button id="BtnAdd" style="float:left;" class="btn neumorphic-btn" onclick="AddBibliotek('` + data[1][2] + `','` + data[1][3] + `');"><i class="fa-solid fa-plus"></i></button>`;
+                <p style="color:#AAA; font-size: 18px; font-weight: 350;">` + data[1][1] + `</p>`;
     
     GetElem.innerHTML += html;        
 }
@@ -128,11 +130,20 @@ function htmlInfoBibliotekGenerator(info,index,path) {
         const link = card.querySelector("[bibliotek-link]")
         
         
-        name.innerHTML = '<img style="filter: grayscale(40%) opacity(80%); float:right;margin: 15px 5px;" width="50px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/2206/2206433.png" alt="Bibliotek logo">' + data[0][0]
+        name.innerHTML = '<hr><img style="filter: opacity(80%); float:left; margin: 0px 25px 25px 0px;" width="30px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/2206/2206433.png" alt="Bibliotek logo">' + data[0][0] + '';
         
         descr.innerHTML = '<p style="color:#AAA; font-size: 17px; font-weight: 350;">' + data[0][1] + '</p>'
-        link.innerHTML = '<br><p style="float: right; color:#AAA; font-size: 13px; font-weight: 300;">URL d\'import : <b>' + path + '</p></b><hr><br><br>';
-        
+    
+        if(path.startsWith('../')) {
+            if(path.endsWith('#')) {
+                link.innerHTML = '<br><p style="text-align: right; color:#AAA; font-size: 13px; font-weight: 300;"><b>Code d\'import :</b> ' + path.replace("../", window.location.href).replace("#", "") + '</p>';
+            } else {
+                link.innerHTML = '<br><p style="text-align: right; color:#AAA; font-size: 13px; font-weight: 300;"><b>Code d\'import :</b> ' + path.replace("../", window.location.href) + '</p>';
+            }
+        } else {
+            link.innerHTML = '<br><p style="text-align: right; color:#AAA; font-size: 13px; font-weight: 300;"><b>Code d\'import :</b> ' + path + '</p>';
+        }
+
         bibliotekCardContainer.append(card)
       
         biblioteks[index] = {name: data[0][0], descr: data[0][1], element: card}
@@ -183,7 +194,7 @@ function htmlKatalogGenerator(content,add,contact,url,num_blibliotek) {
         
         html += `<div style="cursor: pointer;" class="card container">
                     <a onclick="KatalogConstruction('` + url + `','` + data[index][0] + `');" target="_blank" data-link>
-                        <div class="img"><img src="` + data[index][6] + `" data-img></div>
+                        <div class="img" style="background-size: cover; background-image: url('` + data[index][6] + `');"><img src="` + data[index][6] + `" data-img></div>
                         <div class="header" data-header>` + data[index][3] + `</div>
                         <div class="overlay">
                             <p data-descr>` + data[index][5] + `</p>
@@ -242,44 +253,61 @@ function AddBibliotek(add_link, contact_link) {
     
     HideClassSwitch('Bibliotek');
     
+    let ele = document.getElementById('AddStep2');
+    
+    w3RemoveClass(ele, 'hide');
+    
+    HideClassSwitch('AddStep2');
+    
     // -----> Popup creation
     
     let GetElem = document.getElementById('AddStep1');
     
-    html = `<a href="#" onclick="HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
-                <h2>Ajouter une <b>Bibliothèque</b></h2>
-                <details class="ksln-info"><summary>Vos Bibliotèques enregistrées</summary>
+    html = `<a style="cursor: pointer;" onclick="BiblioteksAddQuit('AddStep2', 'hide'); HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
+                <h2><u>Ajouter</u> ou <u>Importer</u> le code d'import d'une <b>Bibliothèque</b></h2>
+                <hr>
+                <div class="add-choice" style="justify-content: center;">
+                    <div onclick="HideClassSwitch('AddStep2');" class="add-card container">
+                        <div class="add-img">
+                            <img style="filter: opacity(60%)" src="https://cdn-icons-png.flaticon.com/512/7084/7084011.png">
+                        </div>
+                    </div>
+                    <a href="` + add_link + `" target="_blank" class="add-card container">
+                        <div class="add-img">
+                            <img style="filter: opacity(60%)" src="https://cdn-icons-png.flaticon.com/512/8364/8364955.png">
+                        </div>
+                    </a>
+                </div>
+                <details class="ksln-info"><summary>Vos Bibliotèques déjà enregistrées</summary>
                     <br>
                     <div id="DivBiblioteksIndex"></div>
-                </details>
-            <hr>`;
+                </details>`;
 
     GetElem.innerHTML = html;
     
     
     // -----> Popup ajout step 2
+
+    findLastBibliotek(contact_link, add_link);
     
-    GetElem = document.getElementById('AddStep2');
-    
-    html = `<div style="text-align:center;">
-                <p>Si vous possèdez un <b>compte GitHub</b>, vous pouvez ajouter directement cette Bibliotek.</p>
-                <a href="` + add_link + `" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement en 2 clics</button>
-                </a>
-                <br><br><br>
-                <p>Vous pouvez nous transmettre le lien d'import cliquant sur le <b>bouton ci-dessous</b>.</p>
-                <a href="` + contact_link + `" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-solid fa-plus"></i> Par prise de contact</button>
-                </a>
-            </div><br>`;
-    
-    GetElem.innerHTML = html;
-    
+
     PrintBiblioteksPopup();
     
     
-    
+
 }
+
+
+function BiblioteksAddQuit(name, class_name) {
+
+    let ele = document.getElementById(name);
+    
+    w3RemoveClass(ele, class_name);
+}
+
+
+
+
 
 
 function TestAddBibliotek() {
@@ -329,7 +357,7 @@ function htmlBiblioteksTableGenerator(content) {
         return null
     } else {
         
-        const header = ["Bibliothèques - URLs d'imports renseignés"];
+        const header = ["Codes d'imports renseignés"];
         const data = content.slice(2);
         
         html += '<thead class="table-dark">';
@@ -344,7 +372,9 @@ function htmlBiblioteksTableGenerator(content) {
             html += '<tr>';
             row.forEach(function(colData, index) {            
                 if(colData.startsWith('../')) {
-                    html += '<td class="ellipsis">' + colData.replace("../", window.location.pathname) + '</td>';
+                    html += '<td class="ellipsis"><b>' + colData.replace("../", window.location.href.replace("#", "")) + '</b></td>';
+                } else {
+                    html += '<td class="ellipsis">' + colData + '</td>';
                 }
             });
             html += '</tr>';
@@ -370,12 +400,6 @@ function htmlBiblioteksTableGenerator(content) {
 
 
 
-
-
-
-
-
-
 function AddKatalog(add_link, contact_link, url) {
 
     HideClassSwitch('PopupAdd');
@@ -388,7 +412,7 @@ function AddKatalog(add_link, contact_link, url) {
     
     let GetElem = document.getElementById('AddStep1');
     
-    html = `<a href="#" onclick="HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
+    html = `<a style="cursor: pointer;" onclick="HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
                 <hr>
                 <h2>Ajouter un <b>Katalog</b></h2>
                 <hr>
@@ -418,7 +442,7 @@ function AddKatalog(add_link, contact_link, url) {
     html = `<hr>
                 <p>Si vous possèdez un <b>compte GitHub</b>, vous pouvez ajouter directement cette Bibliotek.</p>
                 <a href="` + add_link + `" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement en 2 clics</button>
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement</button>
                 </a>
                 <br><br><br>
                 <p>Vous pouvez nous transmettre le lien d'import cliquant sur le <b>bouton ci-dessous</b>.</p>
@@ -523,4 +547,70 @@ function TestAddKatalog() {
         
     CopyAddCode();
     
+}
+
+
+
+
+
+function findLastBibliotek(contact,add) {
+
+    // -----> Liste des katalogs
+    Papa.parse(window.location.pathname + "../biblioteks-list.csv", { 
+        download: true,
+        delimiter: ";",
+        skipEmptyLines: true,
+        complete: results => {
+            findLastBibliotekResult(results.data,contact,add);
+        }
+    });      
+}
+
+function findLastBibliotekResult(content,contact,add) {
+
+    
+    let max = 00;
+    
+    const data = content.slice(2);
+    
+    let preview = document.getElementById("AddStep2");
+
+    if (content.length == 0 || typeof(content[0]) === 'undefined') {
+        return null
+    } else {
+        
+        let html = '<div>';
+
+        data.forEach(function(row,index) {
+            if(data[index][0].startsWith('../')){  
+                if(max < data[index][0].split('/')[1]){max = data[index][0].split('/')[1];}
+            }
+        });
+
+                    
+        html += 'Vous devez renseigner ce code d\'import dans une nouvelle ligne<b> : &ensp;&ensp;../' + max + '/</b>';  
+        
+        html += '</div>';
+        
+        
+        html += `<div style="text-align:center;">
+                <a href="` + add + `" target="_blank">
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement</button>
+                </a>
+                <a href="` + contact + `" target="_blank">
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-solid fa-plus"></i> Par prise de contact</button>
+                </a>
+            </div><br>`;        
+
+            
+        // insert table element into csv preview
+        preview.innerHTML = html;
+    }
+    
+    
+    
+    
+    
+    
+
 }
