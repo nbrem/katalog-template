@@ -1,4 +1,5 @@
-katalog_id;filters_id;filters_name
+KATALOG - ID      ;      FILTERS - ID      ;      NOM
+---
 katalog1;s_f1;sous-filtre 1
 katalog1;s_f2;sous-filtre 2
 katalog2;s_f1;filtre 0.1

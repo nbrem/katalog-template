@@ -67,9 +67,10 @@ function htmlHomeGenerator(content) {
     let html = `<br>
                 <h1 style="display: block;">
                     ` + data[1][0] + `
-                    &ensp;&ensp;<img style="float:right;margin: 15px 10px;" width="95px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/2206/2206433.png" alt="Bibliotek logo">
+                    &ensp;&ensp;<img style="float:right;margin: 15px 25px;" width="95px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/2206/2206433.png" alt="Bibliotek logo">
                 </h1>
-                <p style="color:#AAA; font-size: 18px; font-weight: 350;">` + data[1][1] + `</p>`;  
+                <p style="color:#AAA; font-size: 18px; font-weight: 350;">` + data[1][1] + `</p>
+                <button id="BtnAdd" style="float:left;" class="btn neumorphic-btn" onclick="AddBibliotek('` + data[1][2] + `','` + data[1][3] + `');"><i class="fa-solid fa-plus"></i></button>`;
     
     GetElem.innerHTML += html;        
 }
@@ -104,6 +105,8 @@ function htmlBibliotekGenerator(content) {
             }
         });           
     });    
+    
+    
 
 }
 
@@ -117,17 +120,18 @@ function htmlBibliotekGenerator(content) {
 
 function htmlInfoBibliotekGenerator(info,index,path) {
 
-        const data = info.slice(1);
+        const data = info.slice(2);
     
         const card = bibliotekCardTemplate.content.cloneNode(true).children[0]
         const name = card.querySelector("[bibliotek-name]")
         const descr = card.querySelector("[bibliotek-descr]")
+        const link = card.querySelector("[bibliotek-link]")
         
         
         name.innerHTML = '<img style="filter: grayscale(40%) opacity(80%); float:right;margin: 15px 5px;" width="50px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/2206/2206433.png" alt="Bibliotek logo">' + data[0][0]
         
         descr.innerHTML = '<p style="color:#AAA; font-size: 17px; font-weight: 350;">' + data[0][1] + '</p>'
-
+        link.innerHTML = '<br><p style="float: right; color:#AAA; font-size: 13px; font-weight: 300;">URL d\'import : <b>' + path + '</p></b><hr><br><br>';
         
         bibliotekCardContainer.append(card)
       
@@ -171,7 +175,7 @@ function htmlKatalogGenerator(content,add,contact,url,num_blibliotek) {
     const grid = card.querySelector("[bibliotek-katalogs]")
 
     // -----> Création du code html des cards Katalogs
-    let data = content.slice(1);
+    let data = content.slice(2);
     
     let html = '';
     
@@ -190,7 +194,7 @@ function htmlKatalogGenerator(content,add,contact,url,num_blibliotek) {
         
     
     html += `<div style="cursor: pointer;" class="card container add-card">
-                <div onclick="AddKatalog('` + add + `','` + contact + `');" class="add-img"><img style="filter: grayscale(15%) opacity(20%)" src="https://cdn-icons-png.flaticon.com/512/4732/4732392.png"></div>
+                <div onclick="AddKatalog('` + add + `','` + contact + `','` + url + `');" class="add-img"><img style="filter: grayscale(15%) opacity(20%)" src="https://cdn-icons-png.flaticon.com/512/4732/4732392.png"></div>
             </div>`;     
 
     grid.innerHTML = html;
@@ -242,17 +246,13 @@ function AddBibliotek(add_link, contact_link) {
     
     let GetElem = document.getElementById('AddStep1');
     
-    html = `<a href="#" onclick="HideClassSwitch('AddStep2');HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
-                <hr>
-                <h2>Ajouter une <b>Bibliotek</b></h2>
-                <hr>
-                <div style="text-align:center;">
-                    <input type="text" class="InputAdd" id="AddDesi" placeholder="Désignation">
-                    <input type="text" class="InputAdd" id="AddDescr" placeholder="Description">
-                    <input type="text" class="InputAdd" id="AddWeb" placeholder="Lien d'import de la bibliotek : https://...">
-                    <br><button class="btn neumorphic-btn" onclick="TestAddBibliotek();">Copier le code d'ajout</button>
-                </div><br>
-                <div id="AddZoneTest"></div>`;
+    html = `<a href="#" onclick="HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
+                <h2>Ajouter une <b>Bibliothèque</b></h2>
+                <details class="ksln-info"><summary>Vos Bibliotèques enregistrées</summary>
+                    <br>
+                    <div id="DivBiblioteksIndex"></div>
+                </details>
+            <hr>`;
 
     GetElem.innerHTML = html;
     
@@ -261,18 +261,24 @@ function AddBibliotek(add_link, contact_link) {
     
     GetElem = document.getElementById('AddStep2');
     
-    html = `<hr>
-                <p>Vous pouvez nous transmettre le code d'ajout par le biais de notre <b>formulaire contact</b>.</p>
-                <a href="` + contact_link + `" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-solid fa-plus"></i> Ajouter la Bibliotek</button>
-                </a>
-                <hr>
+    html = `<div style="text-align:center;">
                 <p>Si vous possèdez un <b>compte GitHub</b>, vous pouvez ajouter directement cette Bibliotek.</p>
                 <a href="` + add_link + `" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Ajouter la Bibliotek</button>
-                </a>`;
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement en 2 clics</button>
+                </a>
+                <br><br><br>
+                <p>Vous pouvez nous transmettre le lien d'import cliquant sur le <b>bouton ci-dessous</b>.</p>
+                <a href="` + contact_link + `" target="_blank">
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-solid fa-plus"></i> Par prise de contact</button>
+                </a>
+            </div><br>`;
     
     GetElem.innerHTML = html;
+    
+    PrintBiblioteksPopup();
+    
+    
+    
 }
 
 
@@ -287,15 +293,72 @@ function TestAddBibliotek() {
     html += '<div style="vertical-align: middle;"><h2 id="' + data[0].value + '"><img style="filter: grayscale(100%);" width="25px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/6817/6817478.png">&ensp;' + data[0].value + '';
 
     html += '<p style="color:#AAA; font-size: 18px; font-weight: 350;"><br>' + data[1].value + '</p><br></div>';
-                    
-    if(document.getElementById("AddStep2").classList.contains("hide")) {
-        HideClassSwitch("AddStep2");
-    };
     
     grid_preview.innerHTML = html;
+}
+
+
+
+
+
+function PrintBiblioteksPopup() {
+
+    // -----> Liste des katalogs
+    Papa.parse(window.location.pathname + "../biblioteks-list.csv", { 
+        download: true,
+        delimiter: ";",
+        skipEmptyLines: true,
+        complete: results => {
+            htmlBiblioteksTableGenerator(results.data);
+        }
+    });    
+}
+
+
+
+// -----> Creation du code HTML du tableau d'affichage des filtres
+function htmlBiblioteksTableGenerator(content) {
+
+    const save_columns = [0]
     
-    CopyAddCode();
-    
+    let preview = document.getElementById("DivBiblioteksIndex");
+
+    let html = '<table id="table_table_biblioteks_index" class="display table align-middle" style="width:100%">';
+
+    if (content.length == 0 || typeof(content[0]) === 'undefined') {
+        return null
+    } else {
+        
+        const header = ["Bibliothèques - URLs d'imports renseignés"];
+        const data = content.slice(2);
+        
+        html += '<thead class="table-dark">';
+        html += '<tr>';
+        html += '<th class="ellipsis">' + header[0] + '</th>';
+        html += '</tr>';
+        html += '</thead>';
+        
+        html += '<tbody>';
+
+        data.forEach(function(row) {
+            html += '<tr>';
+            row.forEach(function(colData, index) {            
+                if(colData.startsWith('../')) {
+                    html += '<td class="ellipsis">' + colData.replace("../", window.location.pathname) + '</td>';
+                }
+            });
+            html += '</tr>';
+        });
+
+        html += '</tbody>';
+        html += '</table>';
+
+        // insert table element into csv preview
+        preview.innerHTML = html;
+
+        // initialise DataTable
+        initDataTable("#table_table_biblioteks_index");
+    }
 }
 
 
@@ -306,25 +369,32 @@ function TestAddBibliotek() {
 
 
 
-function AddKatalog(add_link, contact_link) {
+
+
+
+
+
+
+
+function AddKatalog(add_link, contact_link, url) {
 
     HideClassSwitch('PopupAdd');
     
     HideClassSwitch('Bibliotek');
     
+    console.log(url + 'katalogs/katalogs.csv')
+    
     // -----> Popup creation
     
     let GetElem = document.getElementById('AddStep1');
     
-    html = `<a href="#" onclick="HideClassSwitch('AddStep2');HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
+    html = `<a href="#" onclick="HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
                 <hr>
                 <h2>Ajouter un <b>Katalog</b></h2>
                 <hr>
-                <details class="ksln-info"><summary>Les différents filtres de ce Katalog</summary>
+                <details class="ksln-info"><summary>Le registre des Katalogs actuels</summary>
                     <br>
-                    <div id="DivFlt1"></div>
-                    <hr>
-                    <div id="DivFlt2"></div>
+                    <div id="DivKatalogsIndex"></div>
                 </details>
                 <div style="text-align:center;">
                     <input type="text" class="InputAdd" id="AddID" placeholder="ID - unique">
@@ -346,18 +416,89 @@ function AddKatalog(add_link, contact_link) {
     GetElem = document.getElementById('AddStep2');
     
     html = `<hr>
-                <p>Vous pouvez nous transmettre le code d'ajout par le biais de notre <b>formulaire contact</b>.</p>
-                <a href="` + contact_link + `" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-solid fa-plus"></i> Ajouter votre projet</button>
-                </a>
-                <hr>
-                <p>Si vous possèdez un <b>compte GitHub</b>, vous pouvez ajouter directement votre projet.</p>
+                <p>Si vous possèdez un <b>compte GitHub</b>, vous pouvez ajouter directement cette Bibliotek.</p>
                 <a href="` + add_link + `" target="_blank">
-                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Ajouter votre projet</button>
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement en 2 clics</button>
+                </a>
+                <br><br><br>
+                <p>Vous pouvez nous transmettre le lien d'import cliquant sur le <b>bouton ci-dessous</b>.</p>
+                <a href="` + contact_link + `" target="_blank">
+                    <button class="neumorphic-btn" style="width:100%;"><i class="fa-solid fa-plus"></i> Par prise de contact</button>
                 </a>`;
     
     GetElem.innerHTML = html;
+    
+    
+    PrintKatalogsPopup(url);
 }
+
+
+function PrintKatalogsPopup(location) {
+
+    // -----> Liste des katalogs
+    Papa.parse(location + "/katalogs/katalogs.csv", { 
+        download: true,
+        delimiter: ";",
+        skipEmptyLines: true,
+        complete: results => {
+            htmlKatalogsTableGenerator(results.data);
+        }
+    });    
+}
+
+
+
+// -----> Creation du code HTML du tableau d'affichage des filtres
+function htmlKatalogsTableGenerator(content) {
+
+    const save_columns = [0,3,5]
+    
+    let preview = document.getElementById("DivKatalogsIndex");
+
+    let html = '<table id="table_katalogs_index" class="display table align-middle" style="width:100%">';
+
+    if (content.length == 0 || typeof(content[0]) === 'undefined') {
+        return null
+    } else {
+        
+        const header = ["ID","Designation","Description"];
+        const data = content.slice(2);
+        
+        html += '<thead class="table-dark">';
+        html += '<tr>';
+        html += '<th class="ellipsis">' + header[0] + '</th>';
+        html += '<th class="ellipsis">' + header[1] + '</th>';
+        html += '<th class="ellipsis">' + header[2] + '</th>';
+        html += '</tr>';
+        html += '</thead>';
+        
+        html += '<tbody>';
+
+        data.forEach(function(row) {
+            html += '<tr>';
+            row.forEach(function(colData, index) {            
+                if(save_columns.includes(index)) {
+                    html += '<td class="ellipsis">' + colData + '</td>';
+                }
+            });
+            html += '</tr>';
+        });
+
+        html += '</tbody>';
+        html += '</table>';
+
+        // insert table element into csv preview
+        preview.innerHTML = html;
+
+        // initialise DataTable
+        initDataTable("#table_table_katalogs_index");
+    }
+}
+
+
+
+
+
 
 
 function TestAddKatalog() {
@@ -380,10 +521,6 @@ function TestAddKatalog() {
     
     grid_preview.innerHTML = html;
         
-    if(document.getElementById("AddStep2").classList.contains("hide")) {
-        HideClassSwitch("AddStep2");
-    };
-    
     CopyAddCode();
     
 }
