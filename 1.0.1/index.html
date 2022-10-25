@@ -6,10 +6,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Resneigner ici une courte description de votre plateforme.">
+        <meta name="description" content="---">
       
       
-        <meta name="author" content="Konsilion Ingénieres">
+        <meta name="author" content="---">
       
       
       <link rel="icon" href="images/logo.png">
@@ -17,7 +17,7 @@
     
     
       
-        <title>Katalog - Modèles de départ</title>
+        <title>Plateforme de ressources ouvertes</title>
       
     
     
@@ -85,7 +85,7 @@
 
 <header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="En-tête">
-    <a href="." title="Katalog - Modèles de départ" class="md-header__button md-logo" aria-label="Katalog - Modèles de départ" data-md-component="logo">
+    <a href="." title="Plateforme de ressources ouvertes" class="md-header__button md-logo" aria-label="Plateforme de ressources ouvertes" data-md-component="logo">
       
   <img src="images/logo.png" alt="logo">
 
@@ -97,7 +97,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Katalog - Modèles de départ
+            Plateforme de ressources ouvertes
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -174,12 +174,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Katalog - Modèles de départ" class="md-nav__button md-logo" aria-label="Katalog - Modèles de départ" data-md-component="logo">
+    <a href="." title="Plateforme de ressources ouvertes" class="md-nav__button md-logo" aria-label="Plateforme de ressources ouvertes" data-md-component="logo">
       
   <img src="images/logo.png" alt="logo">
 
     </a>
-    Katalog - Modèles de départ
+    Plateforme de ressources ouvertes
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -252,12 +252,12 @@
     <hr>
     <p style="color:#AAA; font-size: 18px; font-weight: 350;">Accèdez à vos <b>bibliothèques de ressources</b> et à vos <b>espaces de stockages</b>.</p>
     <div class="add-choice" style="justify-content: left;">
-        <a href="./biblioteks/home" class="add-card container">
+        <a href="./biblioteks/home" class="add-card">
             <div class="add-img">
                 <img style="filter: opacity(100%)" src="./images/katalog_global.png">
             </div>
         </a>
-        <a href="./stockages/home" class="add-card container">
+        <a href="./stockages/home" class="add-card">
             <div class="add-img">
                 <img style="filter: opacity(100%)" src="https://cdn-icons-png.flaticon.com/512/3176/3176377.png">
             </div>
@@ -265,7 +265,25 @@
         <br>
         </div><hr style="width:75%;">
     </div>
-<div style="text-align: center;"><h2 style="color:#AAA">Katalog, <b>Kesako ?</b></h2><br><br><img id="KatalogKesako" src="./images/katalogs_kesako.png"></div>
+
+<details style="" class="ksln-info"><summary style="border-radius:0px; box-shadow: 0px 8px 13px 2px rgba(1,1,1,0.3);"> Mieux comprendre</summary>
+    <div style="text-align: center;" class="div-cleanbody">
+        <h2 style="color:#A5A5A5">Katalog, <b>Kesako ?</b></h2>
+        <br><br>
+        <div><img id="KatalogKesako" src="./images/katalogs_kesako.png"></div>
+        <br><br>
+        <hr>
+        <br>
+        <h2 style="color:#A5A5A5">Katalog, <b>Pourquoi ?</b></h2>
+        <br><br>
+        <div><img id="KatalogKesako" src="./images/katalogs_why.png"></div>
+        <hr>
+        <br>
+        <h2 style="color:#A5A5A5">Katalog, <b>Comment ?</b></h2>
+        <br><br>
+        <div><img id="KatalogKesako" src="./images/katalogs_how.png"></div>
+    </div>    
+</details>
 
 <p><head>
     <meta charset="utf-8">
@@ -345,7 +363,7 @@ input {
 .bibliotek-katalogs {
   margin: 25px 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(275px, auto));
   gap: 30px;
   justify-content: left;    
 }    
@@ -353,7 +371,7 @@ input {
 .add-choice {
   margin: 25px 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(275px, auto));
   gap: 30px;
   justify-content: left;      
 }
@@ -362,7 +380,7 @@ input {
 #CardGrid {
   margin: 15px 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(275px, auto));
   gap: 30px;
   justify-content: left;    
 }
@@ -424,6 +442,7 @@ input {
 .add-img {
     text-align: center;
     height: 100%;
+    max-width: 450px;
     overflow: hidden;
 }
 
