@@ -10,12 +10,12 @@ hide:
     <hr>
     <p style="color:#AAA; font-size: 18px; font-weight: 350;">Accèdez à vos <b>bibliothèques de ressources</b> et à vos <b>espaces de stockages</b>.</p>
     <div class="add-choice" style="justify-content: left;">
-        <a href="./biblioteks/home" class="add-card container">
+        <a href="./biblioteks/home" class="add-card">
             <div class="add-img">
                 <img style="filter: opacity(100%)" src="./images/katalog_global.png">
             </div>
         </a>
-        <a href="./stockages/home" class="add-card container">
+        <a href="./stockages/home" class="add-card">
             <div class="add-img">
                 <img style="filter: opacity(100%)" src="https://cdn-icons-png.flaticon.com/512/3176/3176377.png">
             </div>
@@ -23,7 +23,27 @@ hide:
         <br>
         </div><hr style="width:75%;">
     </div>
-<div style="text-align: center;"><h2 style="color:#AAA">Katalog, <b>Kesako ?</b></h2><br><br><img id="KatalogKesako" src="./images/katalogs_kesako.png"></div>
+    
+    
+<details style="" class="ksln-info"><summary style="border-radius:0px; box-shadow: 0px 8px 13px 2px rgba(1,1,1,0.3);"> Mieux comprendre</summary>
+    <div style="text-align: center;" class="div-cleanbody">
+        <h2 style="color:#A5A5A5">Katalog, <b>Kesako ?</b></h2>
+        <br><br>
+        <div><img id="KatalogKesako" src="./images/katalogs_kesako.png"></div>
+        <br><br>
+        <hr>
+        <br>
+        <h2 style="color:#A5A5A5">Katalog, <b>Pourquoi ?</b></h2>
+        <br><br>
+        <div><img id="KatalogKesako" src="./images/katalogs_why.png"></div>
+        <hr>
+        <br>
+        <h2 style="color:#A5A5A5">Katalog, <b>Comment ?</b></h2>
+        <br><br>
+        <div><img id="KatalogKesako" src="./images/katalogs_how.png"></div>
+    </div>    
+</details>
+
 
     
 
@@ -117,7 +137,7 @@ input {
 .bibliotek-katalogs {
   margin: 25px 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(275px, auto));
   gap: 30px;
   justify-content: left;    
 }    
@@ -125,7 +145,7 @@ input {
 .add-choice {
   margin: 25px 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(275px, auto));
   gap: 30px;
   justify-content: left;      
 }
@@ -134,7 +154,7 @@ input {
 #CardGrid {
   margin: 15px 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(275px, auto));
   gap: 30px;
   justify-content: left;    
 }
@@ -196,6 +216,7 @@ input {
 .add-img {
     text-align: center;
     height: 100%;
+    max-width: 450px;
     overflow: hidden;
 }
     

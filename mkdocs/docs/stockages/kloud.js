@@ -116,7 +116,7 @@ function htmlKloudGenerator(content) {
     });
 
     html += `<div style="cursor: pointer;" class="card container add-card">
-                <div class="add-img"><img style="filter: grayscale(100%) opacity(20%)" src="https://cdn-icons-png.flaticon.com/512/892/892258.png"></div>
+                <a href="` + url_remote + `../stockages/klouds-list.csv" target="_blank"><div class="add-img"><img style="filter: grayscale(100%) opacity(20%)" src="https://cdn-icons-png.flaticon.com/512/892/892258.png"></div></a>
             </div>`;
     
     

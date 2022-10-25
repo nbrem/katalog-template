@@ -51,7 +51,10 @@ window.onload = function() {
         complete: results => {
             htmlBibliotekGenerator(results.data);
         }
-    });      
+    });
+    
+    UserInfoDisplay();
+    
 }
 
 

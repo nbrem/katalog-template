@@ -406,7 +406,7 @@ function htmlParamGenerator(content,location,name,url_remote) {
                     <input type="text" class="InputAdd" id="AddDesi" placeholder="Désignation">
                     <input type="text" class="InputAdd" id="AddDescr" placeholder="Description">
                     <input type="text" class="InputAdd" id="AddWeb" placeholder="Lien de redirection : https://...">
-                    <input type="text" class="InputAdd" id="AddFilt" placeholder="Filtres à appliquer">
+                    <input type="text" class="InputAdd" id="AddFilt" placeholder="Non disponible - Laisser vide">
                     <input type="text" class="InputAdd" id="AddImg" placeholder="Lien vers une images (optionnel) : https://">
                     <input type="text" class="InputAdd" id="AddPers" placeholder="Auteur.ices et partenaires">
                     <br><button class="btn neumorphic-btn" onclick="TestAddRessource();">Copier le code d'ajout</button>
