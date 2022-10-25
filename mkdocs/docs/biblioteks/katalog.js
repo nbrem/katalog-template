@@ -26,14 +26,14 @@ searchInput.addEventListener("input", e => {
 
 
 
-
-
-
-
-
-
 // Transformations CSV vers HTML
 function KatalogConstruction(url_web,name,url_remote) {
+
+        
+    console.log("URL Remote : " + url_remote)
+    
+    console.log("URL Web : " + url_web)
+    
     
     // ---> url_web : origine github.io de la bibliotek
     // ---> url_remote : origine github.com de la bibliotek 
@@ -44,15 +44,13 @@ function KatalogConstruction(url_web,name,url_remote) {
         delimiter: ";",
         skipEmptyLines: true,
         complete: results => {
-            htmlGridGenerator(csvExtractionKatalog(results.data,name),url_web,name);
+            htmlGridGenerator(csvExtractionKatalog(results.data,name),url_web,name,url_remote);
         }
     });
     
 
     // -----> Données de votre liste de projet - Gridcard
 
-    console.log("NOM : " + name)
-    
     Papa.parse(url_web + "katalogs/katalogs.csv", { 
         download: true,
         delimiter: ";",
@@ -189,26 +187,31 @@ function html_s_FilterGenerator(content,name) {
 
 
 // -----> Créée les gridcards depuis le fichier data.csv
-function htmlGridGenerator(content,location,name) {   
+function htmlGridGenerator(content,location,name,url_remote) {   
     
     const data = content.slice(0);
         
     document.getElementById("CardGrid").innerHTML = "";
     
         
-    //document.getElementById("CardGrid").innerHTML += `
-    //    <div onclick="AddResources('` + location + `','` + name + `');" style="cursor: pointer;" class="card container add-card">
-    //        <div class="add-img"><img style="filter: grayscale(20%) opacity(40%)" src="https://cdn-icons-png.flaticon.com/512/7235/7235503.png"></div>
-    //    </div>`;
+    document.getElementById("CardGrid").innerHTML += `
+        <div onclick="AddResources('` + location + `','` + name + `');" style="cursor: pointer;" class="card container add-card">
+            <div class="add-img"><img style="filter: grayscale(20%) opacity(40%)" src="https://cdn-icons-png.flaticon.com/512/7235/7235503.png"></div>
+        </div>`;
     
     data.forEach(function(row, index) {
+        
         const card = ressourceCardTemplate.content.cloneNode(true).children[0]
+        console.log(card)
+        const btn = card.querySelector("[data-btn]")
         const header = card.querySelector("[data-header]")
         const link = card.querySelector("[data-link]")
         const img = card.querySelector("[data-img]")
         const author = card.querySelector("[data-author]")
         const descr = card.querySelector("[data-descr]")
+                
         
+        btn.innerHTML += `<a href=` + url_remote + `katalogs/katalogs.csv target="_blank"><img width="17px" style="margin-top:4px;" class="top-logo" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>`
         card.classList.add("filterDiv")
         card.classList.add.apply(card.classList, data[index][4].split(" "))
         header.textContent = data[index][1]
@@ -220,6 +223,7 @@ function htmlGridGenerator(content,location,name) {
         }
         author.textContent = "par : " + data[index][6]
         descr.textContent = data[index][2]
+
         
         ressourceCardContainer.append(card)
         
@@ -378,8 +382,7 @@ function htmlParamGenerator(content,location,name,url_remote) {
     let katalog_title = document.getElementById('KatalogTitle'); 
     
     html = `<h2 style="color:#6D6D6D; font-size: 30px; margin:0px auto;">` + data[0][3] + `&emsp; 
-                <a href='../../biblioteks/home'><img style="" width="50px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>
-                <img onclick="AddResources('` + url_remote + `','` + name + `');" width="75px" class="top-logo fit-picture" src="../../images/Add_Ressources.png" alt="Bibliotek logo">
+                <a class="a-slide" href="` + url_remote + `katalogs/katalogs.csv" target="_blank"><img  width="30px" class="top-logo" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt=""></a>
                 <button id="ReturnKatalog" class="btn neumorphic-btn" onclick="BibliotekSwitch();">
                     <i class="fa-solid fa-person-walking-arrow-loop-left"></i>
                 </button>
@@ -389,7 +392,7 @@ function htmlParamGenerator(content,location,name,url_remote) {
     
     katalog_title.innerHTML = html;
     
-    
+
     
     // -----> Popup creation
     
@@ -399,12 +402,6 @@ function htmlParamGenerator(content,location,name,url_remote) {
                 <hr>
                 <h2>Décrivez-nous votre <b>ressource</b> :</h2>
                 <hr>
-                <details class="ksln-info"><summary>Les différents filtres de ce Katalog</summary>
-                    <br>
-                    <div id="DivFlt1"></div>
-                    <hr>
-                    <div id="DivFlt2"></div>
-                </details>
                 <div style="text-align:center;">
                     <input type="text" class="InputAdd" id="AddDesi" placeholder="Désignation">
                     <input type="text" class="InputAdd" id="AddDescr" placeholder="Description">
@@ -422,12 +419,10 @@ function htmlParamGenerator(content,location,name,url_remote) {
     // -----> Popup ajout step 2
     
     GetElem = document.getElementById('AddStep2');
-    
-    console.log(location)
-    
+
     html = `<hr>
                 <p>Si vous possèdez un <b>compte GitHub</b>, vous pouvez ajouter directement votre ressource.</p>
-                <a href="` + location + "katalogs/ressources.csv" + `" target="_blank">
+                <a href="` + url_remote + "katalogs/ressources.csv" + `" target="_blank">
                     <button class="neumorphic-btn" style="width:100%;"><i class="fa-brands fa-github"></i> Directement en 2 clics</button>
                 </a>
                 <hr>
@@ -451,7 +446,7 @@ function AddResources(location,name) {
     
     HideClassSwitch('Katalog');
     
-    PrintFilterPopup(location, name);
+    //PrintFilterPopup(location, name);
 }
 
 
@@ -737,7 +732,7 @@ function ShowMobileNav() {
 function htmlTableSwitch(location,name){
     HideClassSwitch("TabPreview");
     HideClassSwitch("CardGrid");
-    HideClassSwitch("FilterBtn");
+    // ------ HideClassSwitch("FilterBtn");
     HideClassSwitch("FiltersList");
     //HideClassSwitch("BtnReset");
     HideClassSwitch("SearchInput");
@@ -755,13 +750,13 @@ function htmlTableSwitch(location,name){
     });
     
     if(document.getElementById("FilterBtn").classList.contains("active")){
-        HideClassSwitch("FiltersZone");
-        document.getElementById("FilterBtn").classList.toggle("active");
+        //HideClassSwitch("FiltersZone");
+        //document.getElementById("FilterBtn").classList.toggle("active");
     };
     
     if(document.getElementById("FilterBtn").classList.contains("active")){
-        HideClassSwitch("FiltersZone");
-        document.getElementById("FilterBtn").classList.toggle("active");
+        //HideClassSwitch("FiltersZone");
+        //document.getElementById("FilterBtn").classList.toggle("active");
     };    
         
     if(document.getElementById("BtnSwitch").classList.contains('fa-table-list')){

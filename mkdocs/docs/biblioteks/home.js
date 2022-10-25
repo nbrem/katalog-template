@@ -67,8 +67,10 @@ function htmlHomeGenerator(content) {
     let html = `<br>
                 <h1 style="display: block;">
                     ` + data[1][0] + `
-                    <a href='` + data[1][2] + `home.csv' target='_blank'><img width="50px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png"></a>
-                    <img onclick="AddBibliotek('` + data[1][2] + `','` + data[1][3] + `');" style="" width="75px" class="top-logo fit-picture" src="../../images/Add_Bibliotek.png" alt="Bibliotek logo">
+                    
+                    <!-- <a href='` + data[1][2] + `home.csv' target='_blank'><img width="40px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png"></a> -->
+                    
+                    <a class="a-slide" onclick="AddBibliotek('` + data[1][2] + `','` + data[1][3] + `');"><img  width="30px" class="top-logo" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt=""></a>
                 </h1>
                 <p style="color:#AAA; font-size: 18px; font-weight: 350;">` + data[1][1] + `</p>`;
     
@@ -96,12 +98,10 @@ function htmlBibliotekGenerator(content) {
     let html = '';
     
     const data = content.slice(2);
+ 
     
+    // -----> Boucle de création sur toutes les bibliothèque enregistrées
     data.forEach(function(row, index) {
-        
-        
-        
-        // -----> Données de votre liste de projet - Gridcard
         Papa.parse(data[index][0] + "bibliotek-info.csv", { 
             download: true,
             delimiter: ";",
@@ -126,6 +126,8 @@ function htmlBibliotekGenerator(content) {
 
 function htmlInfoBibliotekGenerator(info,index,path) {
 
+        // path: chemin de la bibliotek en cours de création
+    
         let modify_path = '';
     
         const data = info.slice(2);
@@ -137,13 +139,13 @@ function htmlInfoBibliotekGenerator(info,index,path) {
         
         
         if (path.startsWith('../')) {
-            modify_path = url_remote + path.slice(-3) + 'bibliotek-info.csv'
+            modify_path = url_remote + path.slice(-3)
         } else {
-            modify_path = url_remote + 'bibliotek-info.csv'
+            modify_path = url_remote
         }
 
         
-        name.innerHTML = '<hr><a href="' + modify_path + '" target="_blank"><img style="filter: opacity(90%); margin: 0px 25px 0px 0px;" width="40px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>' + data[0][0];
+        name.innerHTML = '<hr><a class="a-slide" href="' + modify_path + 'bibliotek-info.csv' + '" target="_blank"><img width="25px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"> </a><h2>' + data[0][0] + '</h2>';
         
         descr.innerHTML = '<p style="color:#AAA; font-size: 17px; font-weight: 350;">' + data[0][1] + '</p>'
     
@@ -168,7 +170,7 @@ function htmlInfoBibliotekGenerator(info,index,path) {
             delimiter: ";",
             skipEmptyLines: true,
             complete: results => {
-                htmlKatalogGenerator(results.data,data[0][2],data[0][3],path,index);
+                htmlKatalogGenerator(results.data,(modify_path + "katalogs/katalogs.csv"),data[0][3],path,index);
             }
         });    
 }
@@ -196,9 +198,9 @@ function htmlKatalogGenerator(content,add,contact,path,num_blibliotek) {
     let modify_url = '';
 
         if (path.startsWith('../')) {
-            modify_url = url_remote + path.slice(-3) + 'bibliotek-info.csv'
+            modify_url = url_remote + path.slice(-3)
         } else {
-            modify_url = url_remote + path.slice(-3) + 'bibliotek-info.csv'
+            modify_url = url_remote + path.slice(-3)
         }
     
 
@@ -215,8 +217,6 @@ function htmlKatalogGenerator(content,add,contact,path,num_blibliotek) {
     
     data.forEach(function(row, index) {
 
-        console.log(data[index][0])
-        
         html += `<div style="cursor: pointer;" class="card container">
                     <a onclick="KatalogConstruction('` + consult_url + `','` + data[index][0] + `','` + modify_url + `');" target="_blank" data-link>
                         <div class="img" style="background-size: cover; background-image: url('` + data[index][6] + `');"><img src="` + data[index][6] + `" data-img></div>
@@ -225,7 +225,6 @@ function htmlKatalogGenerator(content,add,contact,path,num_blibliotek) {
                             <p data-descr>` + data[index][5] + `</p>
                         </div>
                     </a>
-                    <a href='` + modify_url + `katalogs/katalogs.csv' target="_blank"><img width="30px" style="float:left; margin: 15px 0px 0px 0px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"></a>
                 </div>`;   
     });
         
@@ -291,7 +290,7 @@ function AddBibliotek(add_link, contact_link) {
     let GetElem = document.getElementById('AddStep1');
     
     html = `<a style="cursor: pointer;" onclick="BiblioteksAddQuit('AddStep2', 'hide'); HideClassSwitch('PopupAdd');HideClassSwitch('Bibliotek');"><i style="color: red;" class="fa-solid fa-xmark"></i> Fermer</a>
-                <h2><u>Ajouter</u> ou <u>Importer</u> le code d'import d'une <b>Bibliothèque</b></h2>
+                <h2 style="text-align:center;"><b>Ajouter</b> ou <b>Importer</b> une Bibliothèque</h2>
                 <hr>
                 <div class="add-choice" style="justify-content: center;">
                     <div onclick="HideClassSwitch('AddStep2');" class="add-card container">
@@ -345,7 +344,7 @@ function TestAddBibliotek() {
     
     let html = "";
     
-    html += '<div style="vertical-align: middle;"><h2 id="' + data[0].value + '"><img style="filter: grayscale(100%);" width="25px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/6817/6817478.png">&ensp;' + data[0].value;
+    html += '<div style="vertical-align: middle;"><h2 id="' + data[0].value + '"><img style="filter: grayscale(100%);" width="25px" class="fit-picture" src="https://cdn-icons-png.flaticon.com/512/6817/6817478.png">&ensp;' + data[0].value + '</h2>';
 
     html += '<p style="color:#AAA; font-size: 18px; font-weight: 350;"><br>' + data[1].value + '</p><br></div>';
     
@@ -432,9 +431,7 @@ function AddKatalog(add_link, contact_link, url) {
     HideClassSwitch('PopupAdd');
     
     HideClassSwitch('Bibliotek');
-    
-    console.log(url + 'katalogs/katalogs.csv')
-    
+
     // -----> Popup creation
     
     let GetElem = document.getElementById('AddStep1');
@@ -615,7 +612,7 @@ function findLastBibliotekResult(content,contact,add) {
         });
 
                     
-        html += 'Vous devez renseigner ce code d\'import dans une nouvelle ligne<b> : &ensp;&ensp;../' + max + '/</b>';  
+        html += 'Vous devez renseigner ce code d\'import dans une nouvelle ligne<b> : &ensp;&ensp;../0' + (+max + 1) + '/</b>';  
         
         html += '</div>';
         
