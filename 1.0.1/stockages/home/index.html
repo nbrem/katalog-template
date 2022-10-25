@@ -28,7 +28,7 @@
         
           
           
-          <meta name="theme-color" content="#2094f3">
+          <meta name="theme-color" content="#009485">
         
       
       
@@ -60,7 +60,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="blue">
   
     
     
@@ -298,24 +298,23 @@
     <script type="text/javascript" src="../kloud.js"></script>
 </head></p>
 <style>
+.a-slide:hover::after {
+    content: ' modifier';
+    float: right;
+    padding: 0px 10px 0px 0px;
+    font-size: 20px;
+}
+
 
 .top-logo {
     float:right;
-    margin: 25px 0px 25px 15px;
-    border: 1px solid #EEE;
-    padding: 7px;
-    border-radius:5px;
     cursor: pointer;
-    filter: opacity(60%)!important;
-    background-color:#FCFCFC;
+    filter: grayscale(100%) opacity(30%)!important;
 }
 
-.top-logo:hover {
-    float:right;
-    border: 1px solid #EEE;
-    border-radius:5px;   
+.top-logo:hover {  
     filter: opacity(100%) !important;    
-}
+}   
 
 
 .search-wrapper {

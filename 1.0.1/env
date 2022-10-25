@@ -1,6 +1,6 @@
 # SITE INFORMATIONS ===========================================================================================================
 
-site_name: Plateforme Katalog - Modèles de départ
+site_name: Katalog - Modèles de départ
 site_author: Konsilion Ingénieres
 site_description: Resneigner ici une courte description de votre plateforme.
 
@@ -16,7 +16,7 @@ theme:
     language: fr
     palette:
         scheme: default          # NE PAS MODIFIER
-        primary: green            # Couleurs pincipales
+        primary: teal            # Couleurs pincipales
         accent: blue             # Couleur de surbrillance
 
 
