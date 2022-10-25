@@ -52,9 +52,6 @@ window.onload = function() {
             htmlBibliotekGenerator(results.data);
         }
     });
-    
-    UserInfoDisplay();
-    
 }
 
 
