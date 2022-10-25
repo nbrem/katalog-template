@@ -131,7 +131,6 @@ hide:
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/Katalog.css">
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
     <!-- Personnal Konsilion JS -->
-    <script type="text/javascript" src="../user-info.js"></script>
     <script type="text/javascript" src="../katalog.js"></script>
     <script type="text/javascript" src="../home.js"></script>
 </head>
