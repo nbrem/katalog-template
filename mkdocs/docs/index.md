@@ -21,11 +21,10 @@ hide:
             </div>
         </a>  
         <br>
-        </div><hr style="width:75%;">
     </div>
     
     
-<details style="" class="ksln-info"><summary style="border-radius:0px; box-shadow: 0px 8px 13px 2px rgba(1,1,1,0.3);"> Mieux comprendre</summary>
+<details style="" class="ksln-info"><summary style="border-radius:0px; box-shadow: 0px 8px 13px rgba(1,1,1,0.2);"> Mieux comprendre</summary>
     <div style="text-align: center;" class="div-cleanbody">
         <h2 style="color:#A5A5A5">Katalog, <b>Kesako ?</b></h2>
         <br><br>

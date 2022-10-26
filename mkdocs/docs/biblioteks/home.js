@@ -129,6 +129,7 @@ function htmlInfoBibliotekGenerator(info,index,path) {
         // path: chemin de la bibliotek en cours de création
     
         let modify_path = '';
+        let import_path = '';
     
         const data = info.slice(2);
     
@@ -143,6 +144,13 @@ function htmlInfoBibliotekGenerator(info,index,path) {
         } else {
             modify_path = url_remote
         }
+    
+    
+        if (path.startsWith('../')) {
+            import_path = url_web + path.slice(-3)
+        } else {
+            import_path = url_web
+        }        
 
         
         name.innerHTML = '<hr><a class="a-slide" href="' + modify_path + 'bibliotek-info.csv' + '" target="_blank"><img width="25px" class="top-logo fit-picture" src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Bibliotek logo"> </a><h2>' + data[0][0] + '</h2>';
@@ -151,9 +159,9 @@ function htmlInfoBibliotekGenerator(info,index,path) {
     
         if(path.startsWith('../')) {
             if(path.endsWith('#')) {
-                link.innerHTML = '<br><p style="text-align: right; color:#AAA; font-size: 13px; font-weight: 300;"><b>Code d\'import :</b> ' + path.replace("../", window.location.href).replace("#", "") + '</p>';
+                link.innerHTML = '<br><p style="text-align: right; color:#AAA; font-size: 13px; font-weight: 300;"><b>Code d\'import :</b> ' + import_path.replace("#", "") + '</p>';
             } else {
-                link.innerHTML = '<br><p style="text-align: right; color:#AAA; font-size: 13px; font-weight: 300;"><b>Code d\'import :</b> ' + path.replace("../", window.location.href) + '</p>';
+                link.innerHTML = '<br><p style="text-align: right; color:#AAA; font-size: 13px; font-weight: 300;"><b>Code d\'import :</b> ' + import_path + '</p>';
             }
         } else {
             link.innerHTML = '<br><p style="text-align: right; color:#AAA; font-size: 13px; font-weight: 300;"><b>Code d\'import :</b> ' + path + '</p>';
