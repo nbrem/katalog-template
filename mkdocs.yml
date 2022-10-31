@@ -10,7 +10,7 @@ nav:
     
     - Espaces de stockages: stockages/home.md
     
-    - En savoir plus: more.md
+    - En savoir plus: informations.md
 
 theme: 
   name: material
