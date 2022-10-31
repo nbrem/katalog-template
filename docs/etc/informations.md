@@ -63,7 +63,7 @@ Nous vous proposons d'utiliser Konnect afin d'englober en un seul outil, autant 
 <div class="div-cleanbody">
     <h2 style="text-align: center;">Des outils utiles à la collaboration scientifique</h2>
     <br>
-    <img id="img-logo" src="../images/techno_logo_banner.png"><br>
+    <img id="img-logo" src="../../img/techno_logo_banner.png"><br>
     <br>
     <div style="text-align: center;"><a class="md-button" href="https://konnect.konsilion.fr/" target="_blank">Retrouvez-les dans Konnect</a></div>
     <br>

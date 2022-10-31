@@ -133,7 +133,7 @@ hide:
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
     <!-- Personnal Konsilion JS -->
     <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/katalog.js"></script>
-    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/home.js"></script>
+    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/bibliotek.js"></script>
 </head>
 
 
@@ -143,8 +143,8 @@ hide:
 
 .add-slide:hover::after {
     content: ' ajouter une bibliothèque';
-    float: right;
-    padding: 0px 10px 0px 0px;
+    float: left;
+    padding: 0px 0px 0px 10px;
     font-size: 20px;
 }    
     

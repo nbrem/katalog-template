@@ -8,14 +8,14 @@ hide:
     <br>
     <h1>Bienvenue sur votre <b>plateforme Katalog</b></h1>
     <hr>
-    <p style="color:#AAA; font-size: 18px; font-weight: 350;">Accèdez à vos <u><a href="./biblioteks/home">bibilothèques de ressources</a></u> ou à vos <u><a href="./stockages/home">espaces de stockages</a></u>.</p>
+    <p style="color:#AAA; font-size: 18px; font-weight: 350;">Accèdez au <u><a href="./etc/biblioteks/home">moteur de recherche</a></u> de vos ressource, ou directement à vos <u><a href="./etc/klouds/home">espaces de stockages</a></u>.</p>
     <div class="add-choice" style="justify-content: left;">
-        <a href="./biblioteks/home" class="add-card">
+        <a href="./etc/biblioteks/home" class="add-card">
             <div class="add-img">
-                <img style="filter: opacity(50%)" src="./images/katalog_global.png"> 
+                <img style="filter: opacity(50%)" src="./img/katalog_global.png"> 
             </div>
         </a>
-        <a href="./stockages/home" class="add-card">
+        <a href="./etc/klouds/home" class="add-card">
             <div class="add-img">
                 <img style="filter: opacity(50%)" src="https://cdn-icons-png.flaticon.com/512/3176/3176377.png">
             </div>
@@ -26,21 +26,21 @@ hide:
         <div style="text-align: center;" class="div-cleanbody">
             <h2 style="color:#A5A5A5">Katalog, <b>Kesako ?</b></h2>
             <br><br>
-            <div><img id="KatalogKesako" src="./images/katalogs_kesako.png"></div>
+            <div><img id="KatalogKesako" src="./img/katalogs_kesako.png"></div>
             <br><br>
             <hr>
             <br>
             <h2 style="color:#A5A5A5">Katalog, <b>Pourquoi ?</b></h2>
             <br><br>
-            <div><img id="KatalogKesako" src="./images/katalogs_why.png"></div>
+            <div><img id="KatalogKesako" src="./img/katalogs_why.png"></div>
             <hr>
             <br>
             <h2 style="color:#A5A5A5">Katalog, <b>Comment ?</b></h2>
             <br><br>
-            <div><img id="KatalogKesako" src="./images/katalogs_how.png"></div>
+            <div><img id="KatalogKesako" src="./img/katalogs_how.png"></div>
         </div>
         <br>
-        <div class="div-cleanbody" style="background-color:#F5F5F5; margin-bottom:0px;">
+        <div class="div-cleanbody" style="background-color:#F5F5F5; margin: 50px 0px 0px 0px; padding:25px 10px;">
             <h2>Comment créer <b>votre propre plateforme Katalog</b> ?</h2><hr style="color:white !important; width:7%; border-bottom: 10px solid var(--md-primary-fg-color);">
             <i>Un tutoriel détaillé sera bientôt mis à disposition, affaire à suivre.</i>
             <br><br>

@@ -2,11 +2,11 @@
 
 nav:
 
-    - Bibliotheques: biblioteks/home.md
+    - Bibliotheques: etc/biblioteks/home.md
     
-    - Espaces de stockages: stockages/home.md
+    - Espaces de stockages: etc/klouds/home.md
     
-    - En savoir plus: informations.md
+    - En savoir plus: etc/informations.md
 
   
 theme: 
@@ -17,10 +17,10 @@ theme:
     - navigation.top
     - navigation.indexes
     - navigation.tracking
-  logo: ./images/logo.png
-  favicon: ./images/logo.png
+  logo: ../img/logo.png
+  favicon: ../img/logo.png
   palette:
-    scheme: default          # NE PAS MODIFIER
+    scheme: default
 
 
 plugins:
