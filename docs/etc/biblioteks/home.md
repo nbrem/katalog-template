@@ -133,7 +133,7 @@ hide:
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
     <!-- Personnal Konsilion JS -->
     <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/katalog.js"></script>
-    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/bibliotek.js"></script>
+    <script type="text/javascript" src="../bibliotek.js"></script>
 </head>
 
 
