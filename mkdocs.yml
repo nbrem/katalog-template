@@ -1,43 +1,48 @@
+# SITE INFORMATIONS
+# -------------------------------------------------------------------------
 
-# ============== NE PAS MODIFIER CETTE PAGE ==============
+site_name: Plateforme de ressources ouvertes
+site_author: (à renseigner)
+site_description: (à renseigner)
 
 
-INHERIT: ./docs/env
 
-nav:
 
-    - Bibliothèques: biblioteks/home.md
-    
-    - Espaces de stockages: stockages/home.md
-    
-    - En savoir plus: informations.md
 
-theme: 
-  name: material
-  features:
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.top
-    - navigation.indexes
-    - navigation.tracking
-    
-  logo: ./images/logo.png
-  favicon: ./images/logo.png
+# LANGUE ET COULEURS 
+# -------------------------------------------------------------------------
 
-plugins:
-  - macros
+theme:
+    language: fr
+    palette:
+        primary: green            # Couleurs pincipales
+        accent: blue              # Couleur de surbrillance
 
-markdown_extensions:
-  - toc:
-      permalink: true
-  - md_in_html
-  - footnotes
-  - admonition
-  - def_list
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - attr_list
-  - pymdownx.details
+# [Liste des couleurs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#primary-color)
 
-extra_css:
-  - https://konsilion.github.io/katalog-setup/css/extra.css
+
+
+
+
+
+# MENTIONS 
+# -------------------------------------------------------------------------
+
+copyright: Konsilion - Licence juridique Creative Commons CC-BY-NC 4.0  # Renseigner ce que vous voulez ici
+
+
+
+
+
+
+
+      
+ 
+
+
+
+
+
+# ============  /!\ NE PAS MODIFIER /!\ - procedure d'appel du fichier env pour le paramètrage  ============
+
+INHERIT: ./docs/env  

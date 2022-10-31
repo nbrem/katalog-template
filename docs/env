@@ -1,45 +1,44 @@
-# SITE INFORMATIONS ===========================================================================================================
+# ============== NE PAS MODIFIER CETTE PAGE ==============
 
-site_name: Plateforme de ressources ouvertes
-site_author: ---
-site_description: ---
+nav:
 
+    - Bibliothèques: biblioteks/home.md
+    
+    - Espaces de stockages: stockages/home.md
+    
+    - En savoir plus: informations.md
 
-
-
-
-# LANGUE ET COULEURS ==========================================================================================================
-
-# Liste des couleurs : https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#primary-color
-
-theme:
-    language: fr
-    palette:
-        scheme: default          # NE PAS MODIFIER
-        primary: green            # Couleurs pincipales
-        accent: blue             # Couleur de surbrillance
-
-
-
-
-
+  
+theme: 
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.indexes
+    - navigation.tracking
+  logo: ./images/logo.png
+  favicon: ./images/logo.png
+  palette:
+    scheme: default          # NE PAS MODIFIER
 
 
-# MENTIONS =====================================================================================================================
-
-copyright: Konsilion - Licence juridique Creative Commons CC-BY-NC 4.0  # Renseigner ce que vous voulez ici
-
+plugins:
+  - macros
 
 
+markdown_extensions:
+  - toc:
+      permalink: true
+  - md_in_html
+  - footnotes
+  - admonition
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - pymdownx.details
 
 
-
-
-
-# RESEAUX SOCIAUX =====================================================================================================================
-
-extra:
-  generator: false
-  version:
-      provider: mike
-      javascript_dir: js
+extra_css:
+  - https://konsilion.github.io/katalog-setup/css/extra.css
