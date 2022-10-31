@@ -9,6 +9,8 @@ nav:
     - Bibliothèques: biblioteks/home.md
     
     - Espaces de stockages: stockages/home.md
+    
+    - En savoir plus: more.md
 
 theme: 
   name: material

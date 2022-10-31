@@ -16,7 +16,7 @@ theme:
     language: fr
     palette:
         scheme: default          # NE PAS MODIFIER
-        primary: teal            # Couleurs pincipales
+        primary: blue            # Couleurs pincipales
         accent: blue             # Couleur de surbrillance
 
 

@@ -6,47 +6,49 @@ hide:
 
 <div class="div-cleanbody">
     <br>
-    <h1>Bienvenue sur votre plateforme Katalog</h1>
+    <h1>Bienvenue sur votre <b>plateforme Katalog</b></h1>
     <hr>
-    <p style="color:#AAA; font-size: 18px; font-weight: 350;">Accèdez à vos <b>bibliothèques de ressources</b> et à vos <b>espaces de stockages</b>.</p>
+    <p style="color:#AAA; font-size: 18px; font-weight: 350;">Accèdez à vos <u><a href="./biblioteks/home">bibilothèques de ressources</a></u> ou à vos <u><a href="./stockages/home">espaces de stockages</a></u>.</p>
     <div class="add-choice" style="justify-content: left;">
         <a href="./biblioteks/home" class="add-card">
             <div class="add-img">
-                <img style="filter: opacity(100%)" src="./images/katalog_global.png">
+                <img style="filter: opacity(50%)" src="./images/katalog_global.png"> 
             </div>
         </a>
         <a href="./stockages/home" class="add-card">
             <div class="add-img">
-                <img style="filter: opacity(100%)" src="https://cdn-icons-png.flaticon.com/512/3176/3176377.png">
+                <img style="filter: opacity(50%)" src="https://cdn-icons-png.flaticon.com/512/3176/3176377.png">
             </div>
         </a>  
-        <br>
     </div>
-    
-    
-<details style="" class="ksln-info"><summary style="border-radius:0px; box-shadow: 0px 8px 13px rgba(1,1,1,0.2);"> Mieux comprendre</summary>
-    <div style="text-align: center;" class="div-cleanbody">
-        <h2 style="color:#A5A5A5">Katalog, <b>Kesako ?</b></h2>
-        <br><br>
-        <div><img id="KatalogKesako" src="./images/katalogs_kesako.png"></div>
-        <br><br>
-        <hr>
+    <br><br>
+    <details style="padding:0px;border-left-width: 0;" class="ksln-info"><summary style="border-radius:0px; box-shadow: 0px 8px 13px rgba(1,1,1,0.1);"> Mieux comprendre</summary>
+        <div style="text-align: center;" class="div-cleanbody">
+            <h2 style="color:#A5A5A5">Katalog, <b>Kesako ?</b></h2>
+            <br><br>
+            <div><img id="KatalogKesako" src="./images/katalogs_kesako.png"></div>
+            <br><br>
+            <hr>
+            <br>
+            <h2 style="color:#A5A5A5">Katalog, <b>Pourquoi ?</b></h2>
+            <br><br>
+            <div><img id="KatalogKesako" src="./images/katalogs_why.png"></div>
+            <hr>
+            <br>
+            <h2 style="color:#A5A5A5">Katalog, <b>Comment ?</b></h2>
+            <br><br>
+            <div><img id="KatalogKesako" src="./images/katalogs_how.png"></div>
+        </div>
         <br>
-        <h2 style="color:#A5A5A5">Katalog, <b>Pourquoi ?</b></h2>
-        <br><br>
-        <div><img id="KatalogKesako" src="./images/katalogs_why.png"></div>
-        <hr>
-        <br>
-        <h2 style="color:#A5A5A5">Katalog, <b>Comment ?</b></h2>
-        <br><br>
-        <div><img id="KatalogKesako" src="./images/katalogs_how.png"></div>
-    </div>    
-</details>
-
-
-    
-
-
+        <div class="div-cleanbody" style="background-color:#F5F5F5; margin-bottom:0px;">
+            <h2>Comment créer <b>votre propre plateforme Katalog</b> ?</h2><hr style="color:white !important; width:7%; border-bottom: 10px solid var(--md-primary-fg-color);">
+            <i>Un tutoriel détaillé sera bientôt mis à disposition, affaire à suivre.</i>
+            <br><br>
+            <a class="md-button md-button--primary" href="https://konsilion.fr/wp/contacts/" target="_blank"><span></span>Une plateforme Katalog sur mesure ?</a>
+            <br><br>
+        </div>
+    </details>
+</div>
 
 
 
@@ -60,33 +62,11 @@ hide:
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">  Cette balise est faite pour adapter Internet Explorer, mais elle semble désuette en 2022-->
     <!--<meta name="description" content="csv to datatables to csv">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Custom CSS -->
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">  
-    <!-- Custom JS -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.colVis.min.js"></script>    
-    <script type="text/javascript" src="https://unpkg.com/papaparse@5.3.0/papaparse.min.js"></script>
-    <script src="https://kit.fontawesome.com/f9666d4f53.js" crossorigin="anonymous"></script>
-    <!-- Personnal Konsilion CSS -->
-    <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/CleanBody.css">
-    <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/GridCard.css">
-    <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/Form.css">
-    <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/NeumorphismElem.css">  
-    <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/Katalog.css">
-    <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
-    <!-- Personnal Konsilion JS -->
-    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/katalog.js"></script>
-    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/home.js"></script>
 </head>
 
 
 
-<style>
-
+<style>  
 #KatalogKesako {
     width: 95%;
     max-width: 450px;

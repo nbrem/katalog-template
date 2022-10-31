@@ -58,7 +58,7 @@ hide:
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/Katalog.css">
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
     <!-- Personnal Konsilion JS -->
-    <script type="text/javascript" src="../kloud.js"></script>
+    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/kloud.js"></script>
 </head>
 
 

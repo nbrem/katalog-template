@@ -10,6 +10,7 @@ hide:
     <div id="BiblioteksTitle" class="biblioteks-tilte" biblioteks-tilte></div>
     <input type="search" class="search-input" placeholder="Rechercher ..." title="Rechercher" bibliotek-search>
     <br><br><br>
+    <div biblioteks-btn-zone></div>
     <div id="BiblioteksGrid" class="biblioteks-grid" biblioteks-grid-container></div>
 </div>
 
@@ -131,17 +132,24 @@ hide:
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/Katalog.css">
     <link rel="stylesheet" href="https://konsilion.github.io/katalog-setup/css/BootstrapTable.css">    
     <!-- Personnal Konsilion JS -->
-    <script type="text/javascript" src="../katalog.js"></script>
-    <script type="text/javascript" src="../home.js"></script>
+    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/katalog.js"></script>
+    <script type="text/javascript" src="https://konsilion.github.io/katalog-setup/js/home.js"></script>
 </head>
 
 
 
 
 <style>
-  
+
+.add-slide:hover::after {
+    content: ' ajouter une bibliothèque';
+    float: right;
+    padding: 0px 10px 0px 0px;
+    font-size: 20px;
+}    
+    
 .a-slide:hover::after {
-    content: ' modifier';
+    content: ' modifier les informations';
     float: right;
     padding: 0px 10px 0px 0px;
     font-size: 20px;
